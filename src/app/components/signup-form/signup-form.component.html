@@ -1,0 +1,51 @@
+<form (ngSubmit)="onSubmit()" #signupForm="ngForm" [sameAsPassword]="['password', 'sameAsPassword']">
+  <h2 class="text-center">Access Your Tasks</h2><br/>
+  <div class="form-group">
+    <!-- Username -->
+    <label for="username">
+      Username
+    </label><br />
+    <input type="text" id="username" name="username" placeholder="Username" class="form-control" autofocus required minlength="4"
+      [(ngModel)]="user.username" #username="ngModel" hasSpaces="ngModel">
+    <!-- Errors -->
+    <div *ngIf="username.invalid && (username.dirty || username.touched)" class="errors">
+      <small *ngIf="username.errors.required">Username field is required.</small>
+      <small *ngIf="username.errors.minlength && !username.errors.hasSpaces">Username must be at least 4 characters
+        long.</small>
+      <small *ngIf="username.errors.hasSpaces">Username must not has spaces.</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <!-- Password -->
+    <label for="password">
+      Password
+    </label><br />
+    <input id="password" name="password" type="password" placeholder="Password" class="form-control" required
+      minlength="8" [(ngModel)]="user.password" #password="ngModel" hasSpaces="ngModel">
+    <!-- Errors -->
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="errors">
+      <small *ngIf="password.errors.required">Password is required.</small>
+      <small *ngIf="password.errors.minlength && !password.errors.hasSpaces">Password must be at least 8 characters
+        long.</small>
+      <small *ngIf="password.errors.hasSpaces">Password must not has spaces.</small>
+    </div>
+
+  </div>
+  <div class="form-group">
+    <!-- Password Repeat -->
+    <label for="sameAsPassword">
+      Repeat Password
+    </label>
+    <input id="sameAsPassword" name="sameAsPassword" type="password" placeholder="Same As Password" class="form-control"
+      required minlength="8" [(ngModel)]="user.sameAsPassword" #sameAsPassword="ngModel">
+    <!-- Password Repeat Errors -->
+    <div *ngIf="sameAsPassword.invalid && (sameAsPassword.dirty || sameAsPassword.touched)" class="errors">
+      <small *ngIf="sameAsPassword.errors.required">This field is required.</small>
+      <small *ngIf="sameAsPassword.errors.minlength"> Must be at least 8 characters long.</small>
+      <small *ngIf="sameAsPassword.errors.sameAs && !sameAsPassword.errors.hasSpaces">Passwords must be match.</small>
+      <small *ngIf="sameAsPassword.errors.hasSpaces">Password repeat must not has spaces.</small>
+    </div>
+  </div>
+  <button [disabled]="!signupForm.valid" class="btn btn-primary btn-block">Sign Up</button><br />
+  <a routerLink="/account/login">Already have an account?</a>
+</form>

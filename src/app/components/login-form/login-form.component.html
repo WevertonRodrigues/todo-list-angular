@@ -1,0 +1,29 @@
+<form (ngSubmit)="onSubmit()" #formLogin="ngForm">
+  <h2 class="text-center">Access Your Tasks</h2><br/>
+  <div class="form-group">
+    <label for="username">Username</label><br />
+    <input id="username" class="form-control" name="username" placeholder="Username" autofocus required minlength="4"
+      [(ngModel)]="user.username" #username="ngModel" hasSpaces="ngModule">
+    <div *ngIf="username.invalid && (username.dirty || username.touched)" class="errors">
+      <small class="form-text" *ngIf="username.errors.required">Username is required.</small>
+      <small class="form-text" *ngIf="username.errors.minlength && !username.errors.hasSpaces">Username must be at least 4 characters
+        long.</small>
+      <small class="form-text" *ngIf="username.errors.hasSpaces">Username must not has spaces.</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">
+      Password
+    </label><br />
+    <input id="password" class="form-control" name="password" type="password" placeholder="Password" required
+      minlength="8" [(ngModel)]="user.password" #password="ngModel" hasSpaces="ngModule">
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="errors">
+      <small class="form-text" *ngIf="password.errors.required">Password is required.</small>
+      <small class="form-text" *ngIf="password.errors.minlength && !password.errors.hasSpaces">Password must be at least 8 characters
+        long.</small>
+      <small class="form-text" *ngIf="password.errors.hasSpaces">Password must not has spaces.</small>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-block" type="submit" [disabled]="!formLogin.valid">Login</button><br />
+  <a routerLink="/account/signup">Have not account yet?</a>
+</form>

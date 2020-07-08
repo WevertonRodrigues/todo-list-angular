@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.ng-valid[required], .ng-valid.required  {
+  border: 2px solid #42A948;
+}
+
+.ng-invalid:not(form)  {
+  border: 2px solid #a94442;
+}
+
+.errors{
+  color: #a94442;
+}
+
+.content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
